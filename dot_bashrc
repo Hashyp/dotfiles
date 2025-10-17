@@ -1,0 +1,38 @@
+# All the default Omarchy aliases and functions
+# (don't mess with these directly, just overwrite them here!)
+source ~/.local/share/omarchy/default/bash/rc
+
+# Add your own exports, aliases, and functions here.
+#
+# Make an alias for invoking commands you use constantly
+# alias p='python'
+function y() {
+	local tmp="$(mktemp -t "yazi-cwd.XXXXXX")" cwd
+	yazi "$@" --cwd-file="$tmp"
+	IFS= read -r -d '' cwd < "$tmp"
+	[ -n "$cwd" ] && [ "$cwd" != "$PWD" ] && builtin cd -- "$cwd"
+	rm -f -- "$tmp"
+}
+
+# sesh-sessions() {
+#   {
+#     exec </dev/tty
+#     exec <&1
+#     local session
+#     session=$(sesh list -t -c -z --icons | fzf --height 40% --reverse --border-label ' sesh ' --border --prompt '⚡  ')
+#     [[ -z "$session" ]] && return
+#     sesh connect "$session"
+#   }
+# }
+
+# Bind the function to Alt-s (equivalent to \es in zsh)
+# bind -x '"\es": sesh-sessions'
+
+sesh-sessions-new() {
+  sesh connect $(sesh list -t -c -z --icons | fzf --height 40% --reverse --border-label ' sesh ' --border --prompt '⚡  ')
+  # sesh connect $(sesh list | fzf)
+}
+sesh-sessions-simple() {
+  sesh connect $(sesh list | fzf)
+}
+bind -x '"\es": sesh-sessions-simple'
