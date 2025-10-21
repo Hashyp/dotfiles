@@ -18,3 +18,9 @@ name = "sesh config"
 path = "~/.config/sesh/"
 startup_command = "chezmoi edit sesh.toml"
 preview_command = "bat --color=always ~/.config/sesh/sesh.toml"
+
+[[session]]
+name = "bash config"
+path = "~/"
+startup_command = "chezmoi edit .bashrc"
+preview_command = "bat --color=always ~/.bashrc"
