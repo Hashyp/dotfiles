@@ -14,6 +14,8 @@ function y() {
 	rm -f -- "$tmp"
 }
 
+set -o vi
+alias lg='lazygit'
 # Bind the function to Alt-s (equivalent to \es in zsh)
 # bind -x '"\es": sesh-sessions'
 
@@ -26,4 +28,3 @@ sesh-sessions-simple() {
 }
 bind -x '"\es": sesh-sessions-simple'
 
-set -o vi
