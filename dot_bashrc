@@ -25,3 +25,5 @@ sesh-sessions-simple() {
   sesh connect $(sesh list | fzf)
 }
 bind -x '"\es": sesh-sessions-simple'
+
+set -o vi
