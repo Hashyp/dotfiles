@@ -1,3 +1,6 @@
+# If not running interactively, don't do anything (leave this at the top of this file)
+[[ $- != *i* ]] && return
+
 # All the default Omarchy aliases and functions
 # (don't mess with these directly, just overwrite them here!)
 source ~/.local/share/omarchy/default/bash/rc
@@ -14,10 +17,18 @@ function y() {
 	rm -f -- "$tmp"
 }
 
+# this line hast to be here
 set -o vi
 alias lg='lazygit'
+alias devpod='devpod-cli'
+# alias fabric='fabric-ai'
+alias fabric='fabric-ai --raw'
+alias oc='opencode'
+alias speedtest='cloudflare-speed-cli'
 # Bind the function to Alt-s (equivalent to \es in zsh)
 # bind -x '"\es": sesh-sessions'
+
+# this comment needs to be deleted
 
 sesh-sessions-new() {
   sesh connect $(sesh list -t -c -z --icons | fzf --height 40% --reverse --border-label ' sesh ' --border --prompt '⚡  ')
@@ -28,3 +39,5 @@ sesh-sessions-simple() {
 }
 bind -x '"\es": sesh-sessions-simple'
 
+export PATH="$PATH:/home/hashyp/.dotnet/tools"
+. "$HOME/.cargo/env"
